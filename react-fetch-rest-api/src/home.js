@@ -7,9 +7,7 @@ import {
 } from "react-router-dom";
 import store from "./store";
 class home extends Component {
-  state = {
-    todos: []
-  }
+  
   componentDidMount() {
     fetch('http://jsonplaceholder.typicode.com/users')
     .then(res => res.json())
@@ -23,19 +21,22 @@ class home extends Component {
       console.log(store.getState())
     })
     .catch(console.log)
+    store.subscribe(() => {
+      console.log("Store changed ",store.getState())
+    });
   }
 
   //var list[]=store.getState().todos
   
   // [...]
   render() {
-
+     console.log("88")
     return (
       
        <div className="container">
         <div className="col-xs-12">
         <h1>My users</h1>
-        {store.getState().todos.map((todo) => (
+        {store.getState().map((todo) => {return(
           <div className="card">
             <div className="card-body">
               <h5 className="card-title">{todo.name}</h5>
@@ -50,7 +51,7 @@ class home extends Component {
           
           </div>
           
-        ))}
+        )})}
         </div>
         
        </div>
