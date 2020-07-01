@@ -18,7 +18,7 @@ class router extends Component {
             
             <Router>
               <Switch>
-                <Route path="/address" component={address}/>
+                <Route path="/:bp" component={address}/>
                 <Route path="/"    component={home}/>
                 </Switch>
           

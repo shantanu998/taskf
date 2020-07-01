@@ -5,17 +5,27 @@ import {
   Route,
   Link
 } from "react-router-dom";
-class address extends Component {
+import store from "./store";
 
 
-    render() {
+function address ({match}) {
+
+  
+    console.log("Store changed ",store.getState())
+  
+   console.log(match.params)
 
         return (
-            <h1>"sss"</h1>
+        <h1>
+          {
+            store.getState()[match.params.bp].address.street
+          }
+
+          </h1>
 
 
         )
-        }
+        
 
 
 }

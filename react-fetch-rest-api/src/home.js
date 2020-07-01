@@ -8,6 +8,10 @@ import {
 import store from "./store";
 class home extends Component {
   
+  state={
+
+    todos:[]
+  }
   componentDidMount() {
     fetch('http://jsonplaceholder.typicode.com/users')
     .then(res => res.json())
@@ -18,6 +22,9 @@ class home extends Component {
               value: data,
             },
           });
+          this.setState({
+            todos:store.getState()
+          })
       console.log(store.getState())
     })
     .catch(console.log)
@@ -44,7 +51,7 @@ class home extends Component {
               { todo.email}
               </h6>
               <h1>
-              <Link to="/address">Address for user</Link>
+              <Link to={"/"+store.getState().indexOf(todo)}>Address for user</Link>
 
               </h1>
             </div>
