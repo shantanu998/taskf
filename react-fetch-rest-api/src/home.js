@@ -5,6 +5,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import store from "./store";
 class home extends Component {
   state = {
     todos: []
@@ -13,11 +14,19 @@ class home extends Component {
     fetch('http://jsonplaceholder.typicode.com/users')
     .then(res => res.json())
     .then((data) => {
-      this.setState({ todos: data })
-      console.log(this.state.todos)
+        store.dispatch({
+            type: "initialize",
+            payload: {
+              value: data,
+            },
+          });
+      console.log(store.getState())
     })
     .catch(console.log)
   }
+
+  //var list[]=store.getState().todos
+  
   // [...]
   render() {
 
@@ -26,7 +35,7 @@ class home extends Component {
        <div className="container">
         <div className="col-xs-12">
         <h1>My users</h1>
-        {this.state.todos.map((todo) => (
+        {store.getState().todos.map((todo) => (
           <div className="card">
             <div className="card-body">
               <h5 className="card-title">{todo.name}</h5>
