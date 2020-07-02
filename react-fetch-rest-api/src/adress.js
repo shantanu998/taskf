@@ -18,7 +18,7 @@ function address ({match}) {
         return (
         <h1>
           {
-            store.getState()[match.params.bp].address.street
+            store.getState()[match.params.bp].description
           }
 
           </h1>

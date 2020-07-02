@@ -7,6 +7,7 @@ import {
   } from "react-router-dom";
 import home from './home.js';
 import address from './adress.js';
+import cart from './cart';
 class router extends Component {
   
     
@@ -18,7 +19,10 @@ class router extends Component {
             
             <Router>
               <Switch>
+                
+                <Route path="/cart" component={cart}/>
                 <Route path="/:bp" component={address}/>
+
                 <Route path="/"    component={home}/>
                 </Switch>
           
